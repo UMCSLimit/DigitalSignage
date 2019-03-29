@@ -84,7 +84,7 @@ class App extends Component {
   }
 
   returnSlider() {
-    let newsUmcs = [] //this.forUMCS();
+    let newsUmcs = this.forUMCS();
     let photosInstagram = this.forInstagram();
 
     var settings = {
