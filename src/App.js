@@ -4,9 +4,9 @@ import Slider from 'react-slick';
 
 import axios from 'axios';
 import UMCS from './Components/UMCS';
-// import ZTM from './Components/ZTM';
 import Instagram from './Components/Instagram';
 import Footer from './Components/Footer';
+// import ZTM from './Components/ZTM';
 
 class App extends Component {
   constructor() {
