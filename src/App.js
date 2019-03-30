@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Slider from 'react-slick';
 
-import Clock from 'react-live-clock';
 import axios from 'axios';
 import UMCS from './Components/UMCS';
-import ZTM from './Components/ZTM';
+// import ZTM from './Components/ZTM';
 import Instagram from './Components/Instagram';
+import Footer from './Components/Footer';
 
 class App extends Component {
   constructor() {
@@ -101,7 +100,7 @@ class App extends Component {
         <div>
           <h1>Siemanko</h1>
         </div>
-        {newsUmcs.length && newsUmcs}
+        {0 && newsUmcs.length && newsUmcs}
         {photosInstagram.length && photosInstagram}
       </Slider>
     )
@@ -115,12 +114,7 @@ class App extends Component {
         <div className="container">
           {this.returnSlider()}
         </div>
-        <footer className='layout-footer'>
-          <div>
-              <img src='https://www.umcs.pl/img/logo_foot.png?v=2'/>
-              <Clock format={'HH:mm:ss'} ticking={true} interval={1000} />
-          </div>
-        </footer>
+        <Footer />
       </div>
     );
   }

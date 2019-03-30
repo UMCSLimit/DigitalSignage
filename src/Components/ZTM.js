@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 class ZTM extends React.Component {
@@ -30,7 +30,7 @@ class ZTM extends React.Component {
       const child = this.state.data.map((el, index) => {
       return <div key={index}>
           <h3>{el.title}</h3>
-          <img src={el.url} />
+          <img src={el.url} alt='ztm'/>
       </div>
       });
 
