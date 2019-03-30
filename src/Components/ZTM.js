@@ -4,6 +4,7 @@ import axios from 'axios';
 class ZTM extends React.Component {
   constructor() {
       super();
+<<<<<<< HEAD
 
       this.state = {
           response : false,
@@ -37,14 +38,17 @@ class ZTM extends React.Component {
       this.setState({
           child: child
       }) 
+=======
+>>>>>>> cd1e9386e5037df122d56f52760d7b11853233ab
   }  
 
   render() {
+      const { index, ...props } = this.props;
+
       return (
-          <React.Fragment>
-              {this.state.child}
-          </React.Fragment>
-          
+          <div>
+
+          </div>
       )
   }
 }

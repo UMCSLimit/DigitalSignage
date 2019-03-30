@@ -16,7 +16,8 @@ class App extends Component {
       index: 0,
       response: 0,
       data: [],
-      instaData: []
+      instaData: [],
+      ztmIndexes: []
     }
   }
 
@@ -36,6 +37,25 @@ class App extends Component {
       console.log(error);
     }
     return news;
+  }
+
+  forZTM(){
+    let buses = []
+    try{
+      for (let i = 0; i < ztmIndexes.length; i++){
+        axios.get('http://localhost:3001/ztm/' + String(ztmIndexes[i]))
+      .then(({data}) => {
+          <ZTM 
+            line={data.payload.}
+            direction={}
+            station={}
+          />
+      })
+      .catch(function(error) {
+          console.log(error);
+      })
+      }
+    }
   }
   
   forInstagram() {
@@ -79,18 +99,18 @@ class App extends Component {
       .catch(function(error) {
           console.log(error);
       })
-      
   }
 
   returnSlider() {
     let newsUmcs = this.forUMCS();
     let photosInstagram = this.forInstagram();
+    let buses = this.forZTM();
 
     var settings = {
       dots: true,
       fade: true,
       accessibility: false,
-      arrows: false,
+      arrows: true,
       autoplaySpeed: 3000,
       autoplay: true
     };
@@ -102,6 +122,7 @@ class App extends Component {
         </div>
         {0 && newsUmcs.length && newsUmcs}
         {photosInstagram.length && photosInstagram}
+        {buses.length && buses} 
       </Slider>
     )
   }
