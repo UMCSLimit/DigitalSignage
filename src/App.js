@@ -6,7 +6,7 @@ import axios from 'axios';
 import UMCS from './Components/UMCS';
 import Instagram from './Components/Instagram';
 import Footer from './Components/Footer';
-// import ZTM from './Components/ZTM';
+import ZTM from './Components/ZTM';
 
 class App extends Component {
   constructor() {
@@ -17,7 +17,8 @@ class App extends Component {
       response: 0,
       data: [],
       instaData: [],
-      ztmIndexes: []
+      ztmIndexes: [100, 90],
+      ztmData: []
     }
   }
 
@@ -39,22 +40,23 @@ class App extends Component {
     return news;
   }
 
-  forZTM(){
-    let buses = []
-    try{
-      for (let i = 0; i < ztmIndexes.length; i++){
-        axios.get('http://localhost:3001/ztm/' + String(ztmIndexes[i]))
-      .then(({data}) => {
-          <ZTM 
-            line={data.payload.}
-            direction={}
-            station={}
+  forZTM() {
+    for (let i = 0; i < this.state.ztmIndexes.length; i++) {
+      axios.get('http://localhost:3001/ztm/' + String(this.state.ztmIndexes[i]))
+        .then(({data}) => {
+          let ztm = <ZTM 
+            key={i}
+            line={data.info.name}
+            // direction={}
+            // station={}
           />
-      })
-      .catch(function(error) {
-          console.log(error);
-      })
-      }
+          this.setState(prevState => ({
+            ztmData: [...prevState.ztmData, ztm]
+          }))
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
     }
   }
   
@@ -99,18 +101,19 @@ class App extends Component {
       .catch(function(error) {
           console.log(error);
       })
+
+      this.forZTM();
   }
 
   returnSlider() {
     let newsUmcs = this.forUMCS();
     let photosInstagram = this.forInstagram();
-    let buses = this.forZTM();
 
     var settings = {
       dots: true,
       fade: true,
       accessibility: false,
-      arrows: true,
+      arrows: false,
       autoplaySpeed: 3000,
       autoplay: true
     };
@@ -121,8 +124,8 @@ class App extends Component {
           <h1>Siemanko</h1>
         </div>
         {0 && newsUmcs.length && newsUmcs}
-        {photosInstagram.length && photosInstagram}
-        {buses.length && buses} 
+        {0 && photosInstagram.length && photosInstagram}
+        {this.state.ztmData && this.state.ztmData} 
       </Slider>
     )
   }

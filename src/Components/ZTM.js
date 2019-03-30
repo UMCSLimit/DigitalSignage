@@ -1,17 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 
 class ZTM extends React.Component {
-  constructor() {
-      super();
-  }  
-
   render() {
       const { index, ...props } = this.props;
 
       return (
           <div>
-
+              <h1>{props.line}</h1>
           </div>
       )
   }
