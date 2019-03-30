@@ -42,11 +42,12 @@ class App extends Component {
 
   forZTM() {
     for (let i = 0; i < this.state.ztmIndexes.length; i++) {
-      axios.get('http://localhost:3001/ztm/' + String(this.state.ztmIndexes[i]))
+      axios.get('http://localhost:5000/ztm/' + String(this.state.ztmIndexes[i]))
         .then(({data}) => {
           let ztm = <ZTM 
             key={i}
             line={data.info.name}
+            buses={data.payload}
             // direction={}
             // station={}
           />
@@ -120,9 +121,9 @@ class App extends Component {
 
     return (
       <Slider {...settings}>
-        <div>
+        {/* <div>
           <h1>Siemanko</h1>
-        </div>
+        </div> */}
         {0 && newsUmcs.length && newsUmcs}
         {0 && photosInstagram.length && photosInstagram}
         {this.state.ztmData && this.state.ztmData} 
