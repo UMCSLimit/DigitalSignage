@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Slider from 'react-slick';
-
+import 'material-design-icons/iconfont/material-icons.css';
 import axios from 'axios';
 import UMCS from './Components/UMCS';
 import Instagram from './Components/Instagram';
@@ -17,7 +17,7 @@ class App extends Component {
       response: 0,
       data: [],
       instaData: [],
-      ztmIndexes: [100, 90],
+      ztmIndexes: [573, 811],
       ztmData: []
     }
   }
@@ -42,22 +42,13 @@ class App extends Component {
 
   forZTM() {
     for (let i = 0; i < this.state.ztmIndexes.length; i++) {
-      axios.get('http://localhost:5000/ztm/' + String(this.state.ztmIndexes[i]))
-        .then(({data}) => {
-          let ztm = <ZTM 
-            key={i}
-            line={data.info.name}
-            buses={data.payload}
-            // direction={}
-            // station={}
-          />
-          this.setState(prevState => ({
-            ztmData: [...prevState.ztmData, ztm]
-          }))
-        })
-        .catch(function(error) {
-            console.log(error);
-        })
+      let ztm = <ZTM 
+        key={i}
+        id={this.state.ztmIndexes[i]}
+        />
+      this.setState(prevState => ({
+        ztmData: [...prevState.ztmData, ztm]
+      }))
     }
   }
   
@@ -82,6 +73,7 @@ class App extends Component {
   }
 
   componentWillMount() {
+    // axios.get('http://212.182.27.153:3001/news')
     axios.get('http://localhost:3001/news')
       .then(({data}) => {
           this.setState({
@@ -93,6 +85,7 @@ class App extends Component {
           console.log(error);
       })
 
+      // axios.get('http://212.182.27.153:3001/instagram')
       axios.get('http://localhost:3001/instagram')
       .then(({data}) => {
           this.setState({
@@ -121,19 +114,14 @@ class App extends Component {
 
     return (
       <Slider {...settings}>
-        {/* <div>
-          <h1>Siemanko</h1>
-        </div> */}
-        {0 && newsUmcs.length && newsUmcs}
-        {0 && photosInstagram.length && photosInstagram}
+        {newsUmcs.length && newsUmcs}
+        {photosInstagram.length && photosInstagram}
         {this.state.ztmData && this.state.ztmData} 
       </Slider>
     )
   }
 
   render() {
-    
-   
     return (
       <div className="App">
         <div className="container">

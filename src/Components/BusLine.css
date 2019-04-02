@@ -9,14 +9,29 @@
     
 }
 
-.busline h1 {
+/* .busline h1 {
     font-size: 3.5rem;
+} */
+
+.busline .busline-direction {
+    /* vertical-align: center; */
+    font-size: 2rem;
+    margin-left: 200px;
 }
 
-.busline p {
+.busline .busline-time {
     /* position: sticky; */
     position: absolute;
     right: 100px;
     margin-left: 100px;
     font-size: 2.5rem;
+}
+
+.ZTM-header {
+    display: flex;
+    justify-content: center;
+}
+
+.ZTM-header .ZTM-header-name {
+    margin-right: 50px;
 }
