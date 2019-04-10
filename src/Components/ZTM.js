@@ -15,9 +15,11 @@ class ZTM extends React.Component {
     }
 
     apiZTM = () => {
+        // axios.get('http://212.182.27.134:3001/ztm/' + String(this.props.id))
         axios.get('http://localhost:3001/ztm/' + String(this.props.id))
         .then(({data}) => {
             this.setState({busInfo: data, loaded: true})
+            
         })
         .catch((error) => {
             console.log(error);

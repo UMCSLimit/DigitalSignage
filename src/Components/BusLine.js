@@ -2,7 +2,10 @@ import React from 'react';
 import './BusLine.css';
 
 class BusLine extends React.Component {
-    getTimeColor = (time) => {
+    getTimeColor = (planned) => {
+        if(planned)
+            return '#00ff00';
+
         return '#fff';
     }
 
@@ -15,7 +18,7 @@ class BusLine extends React.Component {
                 <i className='material-icons'>accessible</i>
                 <i className='material-icons'>ac_unit</i>
                 <i className='material-icons'>directions_bus</i>
-                <p style={{color: this.getTimeColor(info.time_adv)}} className='busline-time'>{info.time_adv}</p>
+                <p style={{color: this.getTimeColor(info.planned)}} className='busline-time'>{info.time}</p>
             </div>
         )
     }

@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // axios.get('http://212.182.27.153:3001/news')
+    // axios.get('http://212.182.27.134:3001/news')
     axios.get('http://localhost:3001/news')
       .then(({data}) => {
           this.setState({
@@ -85,7 +85,7 @@ class App extends Component {
           console.log(error);
       })
 
-      // axios.get('http://212.182.27.153:3001/instagram')
+      // axios.get('http://212.182.27.134:3001/instagram')
       axios.get('http://localhost:3001/instagram')
       .then(({data}) => {
           this.setState({
@@ -108,7 +108,8 @@ class App extends Component {
       fade: true,
       accessibility: false,
       arrows: false,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 5000,
+      speed: 0,
       autoplay: true
     };
 
