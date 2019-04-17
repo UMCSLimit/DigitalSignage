@@ -16,7 +16,8 @@ body {
   background: #fafafa;
   /* height: 100vh; */
   min-height: 100%;
-  margin-bottom: -88px;
+  display: absolute;
+  margin-bottom: -82px;
 }
 
 h3 {

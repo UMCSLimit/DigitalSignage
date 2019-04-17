@@ -7,6 +7,7 @@ import UMCS from './Components/UMCS';
 import Instagram from './Components/Instagram';
 import Footer from './Components/Footer';
 import ZTM from './Components/ZTM';
+import BACKEND_URL from './api/api';
 
 class App extends Component {
   constructor() {
@@ -18,9 +19,14 @@ class App extends Component {
       data: [],
       instaData: [],
       ztmIndexes: [573, 811],
-      ztmData: []
+      ztmComponents: [],
+      ZtmInfo: []
     }
   }
+
+  // reqZTM = (i) => {
+  //   return axios.get(BACKEND_URL + 'ztm/' + String(this.state.ztmIndexes[i]));
+  // }
 
   forUMCS() {
     let news = [];
@@ -36,6 +42,7 @@ class App extends Component {
       }
     } catch (error) {
       console.log(error);
+
     }
     return news;
   }
@@ -43,11 +50,12 @@ class App extends Component {
   forZTM() {
     for (let i = 0; i < this.state.ztmIndexes.length; i++) {
       let ztm = <ZTM 
+        ZTMData={this.state.ZtmInfo[i]}
         key={i}
         id={this.state.ztmIndexes[i]}
         />
       this.setState(prevState => ({
-        ztmData: [...prevState.ztmData, ztm]
+        ztmComponents: [...prevState.ztmData, ztm]
       }))
     }
   }
@@ -72,9 +80,8 @@ class App extends Component {
     return photos;
   }
 
-  componentWillMount() {
-    // axios.get('http://212.182.27.134:3001/news')
-    axios.get('http://localhost:3001/news')
+  componentDidMount() {
+    axios.get(BACKEND_URL + 'news')
       .then(({data}) => {
           this.setState({
           response: data.success,
@@ -85,8 +92,7 @@ class App extends Component {
           console.log(error);
       })
 
-      // axios.get('http://212.182.27.134:3001/instagram')
-      axios.get('http://localhost:3001/instagram')
+      axios.get(BACKEND_URL + 'instagram')
       .then(({data}) => {
           this.setState({
             instaData: data.payload
@@ -95,8 +101,6 @@ class App extends Component {
       .catch(function(error) {
           console.log(error);
       })
-
-      this.forZTM();
   }
 
   returnSlider() {
@@ -109,7 +113,7 @@ class App extends Component {
       accessibility: false,
       arrows: false,
       autoplaySpeed: 5000,
-      speed: 0,
+      speed: 1000,
       autoplay: true
     };
 

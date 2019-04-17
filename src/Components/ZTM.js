@@ -2,6 +2,7 @@ import React from 'react';
 import './BusLine';
 import BusLine from './BusLine';
 import axios from 'axios';
+import BACKEND_URL from './../api/api';
 
 class ZTM extends React.Component {
     constructor(props) {
@@ -14,26 +15,27 @@ class ZTM extends React.Component {
         }
     }
 
-    apiZTM = () => {
-        // axios.get('http://212.182.27.134:3001/ztm/' + String(this.props.id))
-        axios.get('http://localhost:3001/ztm/' + String(this.props.id))
-        .then(({data}) => {
-            this.setState({busInfo: data, loaded: true})
+    // apiZTM = () => {
+    //     axios.get(BACKEND_URL + 'ztm/' + String(this.props.id))
+    //     .then(({data}) => {
+    //         this.setState({busInfo: data, loaded: true})
             
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
+    // }
 
     componentWillMount() {
-        this.apiZTM();
-        this.setState({ apiInterval: setInterval(this.apiZTM, 2000)});
+        // console.log('Hej <Ztm>')
+        // this.apiZTM();
+        this.busInfo = this.props.ZTMData;
+        // this.setState({ apiInterval: setInterval(this.apiZTM, 2000)});
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.apiInterval);
-        this.setState({apiInterval: null});
+        // clearInterval(this.state.apiInterval);
+        // this.setState({apiInterval: null});
     }
 
     getBusLines() {
